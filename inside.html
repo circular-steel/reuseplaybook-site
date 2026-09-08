@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="wrap" style="padding-top:40px">
+<div class="wrap">
 
   <h2 class="sechead">Browse by part</h2>
 
@@ -69,37 +69,58 @@ const SECTIONS = {A:"Part A - orientation", B:"Part B - the process", C:"Part C 
 
 const PARTS = [
   {key:"A", part:"Part A - orientation, everyone reads this", chapters:[
-    {n:1, title:"Why reuse steel", pp:6, core:ALL, skim:[]},
-    {n:2, title:"Your route, by role", pp:7, core:ALL, skim:[]},
-    {n:3, title:"How reuse works, end to end", pp:8, core:ALL, skim:[]},
+    {n:1, title:"Why reuse steel", pp:6, core:ALL, skim:[],
+      desc:"The carbon and resource case, made once for every reader, and why steel is the most reuse-ready material in construction."},
+    {n:2, title:"Your route, by role", pp:7, core:ALL, skim:[],
+      desc:"Five reader tags, one spread each: your route through the book, your first moves, and your red flags."},
+    {n:3, title:"How reuse works, end to end", pp:8, core:ALL, skim:[],
+      desc:"The master diagram of the whole supply chain, so every later chapter locates your part in it."},
   ]},
   {key:"B", part:"Part B - the process, supply side", chapters:[
-    {n:4, title:"Finding and assessing donor steel", pp:6, core:["DEC"], skim:["CLI","DES","CON"]},
-    {n:5, title:"Deconstruction and recovery", pp:6, core:["DEC"], skim:["CON","SUP"]},
-    {n:6, title:"Testing, certification and traceability", pp:6, core:["DES","SUP"], skim:["CON","DEC"]},
+    {n:4, title:"Finding and assessing donor steel", pp:6, core:["DEC"], skim:["CLI","DES","CON"],
+      desc:"Pre-demolition audits, desktop studies, and what actually makes steel worth recovering before it comes down."},
+    {n:5, title:"Deconstruction and recovery", pp:6, core:["DEC"], skim:["CON","SUP"],
+      desc:"Methods, sequencing and the economics of careful take-down, because damage decides what steel is worth."},
+    {n:6, title:"Testing, certification and traceability", pp:6, core:["DES","SUP"], skim:["CON","DEC"],
+      desc:"What must be proven about a reclaimed section, and in what order, before it can be specified."},
   ]},
   {key:"B", part:"Part B - the process, design and delivery", chapters:[
-    {n:7, title:"Designing with reused steel", pp:7, core:["DES"], skim:["CLI","CON","SUP"]},
-    {n:8, title:"Sourcing and supply", pp:5, core:["CON","SUP"], skim:["DES","DEC"]},
+    {n:7, title:"Designing with reused steel", pp:7, core:["DES"], skim:["CLI","CON","SUP"],
+      desc:"Designing from available stock, and designing for future deconstruction, with tolerances and clauses for both."},
+    {n:8, title:"Sourcing and supply", pp:5, core:["CON","SUP"], skim:["DES","DEC"],
+      desc:"Stockists, lead times, and the honest economics of matching real supply to real demand."},
   ]},
   {key:"B", part:"Part B - cutting across every stage", chapters:[
-    {n:9, title:"Procurement, contracts and programme", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"]},
-    {n:10, title:"Cost", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"]},
-    {n:11, title:"Risk, insurance and assurance", pp:6, core:["CLI","DES","CON"], skim:["SUP"]},
-    {n:12, title:"Carbon and reporting", pp:6, core:["CLI","DES"], skim:["CON","SUP"]},
+    {n:9, title:"Procurement, contracts and programme", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"],
+      desc:"Why most projects lose the opportunity for reuse before anyone opens a drawing, and how to keep it open."},
+    {n:10, title:"Cost", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"],
+      desc:"Where reuse costs more, where it saves, and how to set a contingency based on real risk."},
+    {n:11, title:"Risk, insurance and assurance", pp:6, core:["CLI","DES","CON"], skim:["SUP"],
+      desc:"Building the evidence case an insurer or building control officer will actually ask for."},
+    {n:12, title:"Carbon and reporting", pp:6, core:["CLI","DES"], skim:["CON","SUP"],
+      desc:"How to count the carbon benefit honestly, and the greenwash traps that undermine a real claim."},
   ]},
   {key:"C", part:"Part C - making it happen", chapters:[
-    {n:13, title:"Lessons from projects that did it", pp:5, core:ALL, skim:[]},
-    {n:14, title:"The bigger picture and what's next", pp:4, core:ALL, skim:[]},
+    {n:13, title:"Lessons from projects that did it", pp:5, core:ALL, skim:[],
+      desc:"What consistently works and consistently goes wrong, drawn from real projects rather than case studies alone."},
+    {n:14, title:"The bigger picture and what's next", pp:4, core:ALL, skim:[],
+      desc:"Policy direction, market trajectory, and the gaps that remain, refreshed with every edition."},
   ]},
   {key:"ANNEX", part:"Reference annexes", chapters:[
-    {n:"·", title:"Glossary", pp:4, core:[], skim:ALL},
-    {n:"A", title:"Market data", pp:3, core:[], skim:["CLI","SUP"]},
-    {n:"B", title:"Directory", pp:4, core:["CON","SUP"], skim:["DES","DEC"]},
-    {n:"C", title:"Case study bank", pp:5, core:[], skim:ALL},
-    {n:"D", title:"Cost benchmarks", pp:2, core:["CLI"], skim:["CON"]},
-    {n:"E", title:"UK regulatory and certification snapshot", pp:4, core:["DES"], skim:["CLI","CON","SUP"]},
-    {n:"F", title:"Resource library", pp:2, core:[], skim:["DES","SUP"]},
+    {n:"·", title:"Glossary", pp:4, core:[], skim:ALL,
+      desc:"Terms across reuse and recycling defined once, so the rest of the book can stay readable."},
+    {n:"A", title:"Market data", pp:3, core:[], skim:["CLI","SUP"],
+      desc:"Volumes, flows and reuse rates for the UK market, sourced and dated."},
+    {n:"B", title:"Directory", pp:4, core:["CON","SUP"], skim:["DES","DEC"],
+      desc:"Stockists, testing houses, fabricators and consultants, each entry verified before publication."},
+    {n:"C", title:"Case study bank", pp:5, core:[], skim:ALL,
+      desc:"One page per project, with real data, added to with every edition."},
+    {n:"D", title:"Cost benchmarks", pp:2, core:["CLI"], skim:["CON"],
+      desc:"The numbers that date fastest, isolated here and updated on their own cycle."},
+    {n:"E", title:"UK regulatory and certification snapshot", pp:4, core:["DES"], skim:["CLI","CON","SUP"],
+      desc:"The current CE and UKCA position and testing specifics, since these details date quickly."},
+    {n:"F", title:"Resource library", pp:2, core:[], skim:["DES","SUP"],
+      desc:"Signposts to SCI, IStructE and EN documents, with the version numbers that matter."},
   ]},
 ];
 
@@ -113,6 +134,7 @@ function tagHTML(code, chap){
 function chapterHTML(chap){
   return `<div class="mchap" data-core="${chap.core.join(" ")}" data-skim="${chap.skim.join(" ")}">
     <div class="mhead"><span class="mn">${chap.n}</span><h4>${chap.title}</h4></div>
+    <p class="mdesc">${chap.desc || ""}</p>
     <div class="mtags">${ALL.map(c=>tagHTML(c,chap)).join("")}</div>
   </div>`;
 }
