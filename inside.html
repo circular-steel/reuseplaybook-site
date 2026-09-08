@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What's inside - Reuse Playbook</title>
+<meta name="description" content="Filter the Steel Reuse Playbook's fourteen chapters by your role in a project, and read a sample from Chapter 9.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="style.css">
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d8464c5b47974d3cb71971d83b61c9c7"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap hrow">
+    <a class="brand" href="index.html">Reuse<span>Playbook</span></a>
+  </div>
+</header>
+
+<div class="hero-band">
+  <a href="https://circularsteel.com"><img class="hero-mark" src="assets/circular-steel-logo-white.png" alt="Circular Steel"></a>
+  <div class="wrap hero">
+    <span class="status"><span class="dot"></span>A working preview, not the finished book</span>
+    <h1>What's inside.</h1>
+    <p class="lede">Fourteen chapters, tagged by who they're for. Pick your role below and watch the book
+      narrow to just your part, the same filtering the finished site will use for real.</p>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:40px">
+
+  <h2 class="sechead">Filter by your role</h2>
+
+  <div class="rolebar" id="rolebar"></div>
+  <p class="mapstatus" id="mapstatus"></p>
+
+  <div id="mapgrid"></div>
+
+</div>
+
+<div class="formband" style="padding-top:40px">
+<div class="wrap" style="text-align:center">
+  <a class="btn" href="index.html#signup-form">Sign up to read it when it's ready</a>
+</div>
+</div>
+
+<footer class="site"><div class="wrap frow">
+  <div class="fbrand">
+    <img src="assets/circular-steel-logo-white.png" alt="Circular Steel">
+    <span class="flabel"><strong>Reuse Playbook</strong>an initiative from Circular Steel</span>
+  </div>
+  <div class="flinks">
+    <a href="https://circularsteel.com">circularsteel.com</a>
+    <span class="sep">&middot;</span>
+    <a href="mailto:hello@circularsteel.com">hello@circularsteel.com</a>
+  </div>
+</div></footer>
+
+<script>
+const ROLES = {CLI:"Client side", DES:"Design team", CON:"Main contractor", DEC:"Deconstruction", SUP:"Supply chain"};
+const ALL = Object.keys(ROLES);
+
+const PARTS = [
+  {part:"Part A — orientation, everyone reads this", chapters:[
+    {n:1, title:"Why reuse steel", pp:6, core:ALL, skim:[]},
+    {n:2, title:"Your route, by role", pp:7, core:ALL, skim:[]},
+    {n:3, title:"How reuse works, end to end", pp:8, core:ALL, skim:[]},
+  ]},
+  {part:"Part B — the process, supply side", chapters:[
+    {n:4, title:"Finding and assessing donor steel", pp:6, core:["DEC"], skim:["CLI","DES","CON"]},
+    {n:5, title:"Deconstruction and recovery", pp:6, core:["DEC"], skim:["CON","SUP"]},
+    {n:6, title:"Testing, certification and traceability", pp:6, core:["DES","SUP"], skim:["CON","DEC"]},
+  ]},
+  {part:"Part B — the process, design and delivery", chapters:[
+    {n:7, title:"Designing with reused steel", pp:7, core:["DES"], skim:["CLI","CON","SUP"]},
+    {n:8, title:"Sourcing and supply", pp:5, core:["CON","SUP"], skim:["DES","DEC"]},
+  ]},
+  {part:"Part B — cutting across every stage", chapters:[
+    {n:9, title:"Procurement, contracts and programme", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"]},
+    {n:10, title:"Cost", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"]},
+    {n:11, title:"Risk, insurance and assurance", pp:6, core:["CLI","DES","CON"], skim:["SUP"]},
+    {n:12, title:"Carbon and reporting", pp:6, core:["CLI","DES"], skim:["CON","SUP"]},
+  ]},
+  {part:"Part C — making it happen", chapters:[
+    {n:13, title:"Lessons from projects that did it", pp:5, core:ALL, skim:[]},
+    {n:14, title:"The bigger picture and what's next", pp:4, core:ALL, skim:[]},
+  ]},
+  {part:"Reference annexes", chapters:[
+    {n:"—", title:"Glossary", pp:4, core:[], skim:ALL},
+    {n:"A", title:"Market data", pp:3, core:[], skim:["CLI","SUP"]},
+    {n:"B", title:"Directory", pp:4, core:["CON","SUP"], skim:["DES","DEC"]},
+    {n:"C", title:"Case study bank", pp:5, core:[], skim:ALL},
+    {n:"D", title:"Cost benchmarks", pp:2, core:["CLI"], skim:["CON"]},
+    {n:"E", title:"UK regulatory and certification snapshot", pp:4, core:["DES"], skim:["CLI","CON","SUP"]},
+    {n:"F", title:"Resource library", pp:2, core:[], skim:["DES","SUP"]},
+  ]},
+];
+
+const CHAPTER_COUNT = PARTS.slice(0,5).reduce((n,p)=>n+p.chapters.length,0);
+
+function tagHTML(code, chap){
+  const cls = chap.core.includes(code) ? "tag" : chap.skim.includes(code) ? "tag skim" : "tag ghost";
+  return `<span class="${cls}" data-t="${code}">${code}</span>`;
+}
+
+function chapterHTML(chap){
+  return `<div class="mchap" data-core="${chap.core.join(" ")}" data-skim="${chap.skim.join(" ")}">
+    <span class="mn">${chap.n}</span><h4>${chap.title}</h4>
+    <div class="mp">${chap.pp}pp</div>
+    <div class="mtags">${ALL.map(c=>tagHTML(c,chap)).join("")}</div>
+  </div>`;
+}
+
+function render(){
+  const host = document.getElementById("mapgrid");
+  host.innerHTML = PARTS.map(p => `
+    <div class="mappart">${p.part}</div>
+    <div class="mapgrid">${p.chapters.map(chapterHTML).join("")}</div>
+  `).join("");
+}
+
+function relevant(el, r){
+  if (!r) return true;
+  const core = (el.dataset.core || "").split(" ").filter(Boolean);
+  const skim = (el.dataset.skim || "").split(" ").filter(Boolean);
+  return core.includes(r) || skim.includes(r);
+}
+
+function applyRole(r){
+  document.querySelectorAll(".mchap").forEach(el =>
+    el.classList.toggle("dim", !relevant(el, r)));
+
+  const s = document.getElementById("mapstatus");
+  if (!r){
+    s.innerHTML = `Every chapter shown. Pick your role above to see what's core reading for you, and what you can skip.`;
+    return;
+  }
+  let core = 0, skim = 0;
+  document.querySelectorAll(".mchap").forEach((el, i) => {
+    if (i >= CHAPTER_COUNT) return; // only count numbered chapters, not annexes
+  });
+  // recount properly against the chapter list, not annexes
+  let coreN = 0, skimN = 0;
+  PARTS.slice(0,5).forEach(p => p.chapters.forEach(c => {
+    if (c.core.includes(r)) coreN++;
+    else if (c.skim.includes(r)) skimN++;
+  }));
+  s.innerHTML = `Reading as <strong>${ROLES[r]}</strong>: <strong>${coreN} of ${CHAPTER_COUNT}</strong> chapters are core reading for you, ${skimN} more worth skimming.`;
+}
+
+function buildRoleBar(){
+  const host = document.getElementById("rolebar");
+  host.innerHTML = '<span class="lbl">I am</span>' +
+    Object.entries(ROLES).map(([k,v]) => `<button class="rchip" data-r="${k}">${v}</button>`).join("") +
+    '<button class="rchip clear" data-r="">Show everything</button>';
+  host.querySelectorAll(".rchip").forEach(b => b.onclick = () => {
+    host.querySelectorAll(".rchip").forEach(x => x.classList.toggle("on", x === b && b.dataset.r));
+    applyRole(b.dataset.r || null);
+  });
+}
+
+render();
+buildRoleBar();
+applyRole(null);
+</script>
+
+</body>
+</html>

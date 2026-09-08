@@ -32,6 +32,35 @@ header.site{border-bottom:1px solid var(--line);background:#fff}
 .tag[data-t=CON]{background:var(--con-b);color:var(--con-t)}
 .tag[data-t=DEC]{background:var(--dec-b);color:var(--dec-t)}
 .tag[data-t=SUP]{background:var(--sup-b);color:var(--sup-t)}
+.tag.skim{opacity:.5}
+.tag.ghost{background:transparent!important;color:var(--mute)!important;box-shadow:inset 0 0 0 1px var(--line)}
+
+/* interactive map */
+.rolebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);
+  border-radius:var(--r);padding:14px;margin:0 0 8px}
+.rolebar .lbl{font-size:13px;color:var(--mute);padding:0 2px;white-space:nowrap}
+.rchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;
+  font:600 13px/1 inherit;cursor:pointer;color:var(--grey);transition:.12s}
+.rchip:hover{border-color:var(--mute)}
+.rchip.on{color:#fff;border-color:transparent}
+.rchip.on[data-r=CLI]{background:var(--cli-t)} .rchip.on[data-r=DES]{background:var(--des-t)}
+.rchip.on[data-r=CON]{background:var(--con-t)} .rchip.on[data-r=DEC]{background:var(--dec-t)}
+.rchip.on[data-r=SUP]{background:var(--sup-t)}
+.rchip.clear{color:var(--mute)}
+.mapstatus{font-size:14.5px;color:var(--grey);margin:0 0 28px;min-height:1.4em}
+.mapstatus strong{color:var(--ink)}
+.mappart{font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);font-weight:700;
+  margin:32px 0 12px}
+.mappart:first-of-type{margin-top:0}
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.mchap{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;transition:opacity .18s}
+.mchap.dim{opacity:.22}
+.mchap .mn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+  border-radius:50%;background:var(--bg);border:1px solid var(--line);font:700 12px/1 inherit;
+  color:var(--mute);margin-right:8px;vertical-align:2px}
+.mchap h4{display:inline;margin:0;font-size:14.5px;font-weight:700}
+.mchap .mp{font-size:12px;color:var(--mute);margin:4px 0 10px 30px}
+.mchap .mtags{margin-left:30px}
 
 /* hero */
 .hero-band{background:var(--navy);background:radial-gradient(circle at 88% -10%,#003a8f 0%,var(--navy) 45%,var(--navy-deep) 100%);
@@ -69,10 +98,10 @@ h2.sechead{font-size:13px;letter-spacing:.7px;text-transform:uppercase;color:var
   padding:24px 28px;margin:36px 0 0}
 .fundnote h3{margin:0 0 4px;font-size:15.5px;font-weight:700}
 .fundnote p{margin:0;font-size:14.5px;color:var(--grey);max-width:520px}
-.fundnote .btn-outline-navy{display:inline-block;background:transparent;color:var(--navy);text-decoration:none;
+.btn-outline-navy{display:inline-block;background:transparent;color:var(--navy);text-decoration:none;
   padding:12px 22px;border:1.5px solid var(--navy);border-radius:999px;font:700 14.5px/1 inherit;
   letter-spacing:.2px;white-space:nowrap;transition:.12s}
-.fundnote .btn-outline-navy:hover{background:var(--navy);color:#fff}
+.btn-outline-navy:hover{background:var(--navy);color:#fff}
 
 /* form */
 .formband{background:var(--blue-tint);padding:1px 0 56px;margin-top:8px}
