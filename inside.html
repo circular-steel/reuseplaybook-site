@@ -65,35 +65,35 @@
 const ROLES = {CLI:"Client side", DES:"Design team", CON:"Main contractor", DEC:"Deconstruction", SUP:"Supply chain"};
 const ALL = Object.keys(ROLES);
 
-const SECTIONS = {A:"Part A — orientation", B:"Part B — the process", C:"Part C — making it happen", ANNEX:"Reference annexes"};
+const SECTIONS = {A:"Part A - orientation", B:"Part B - the process", C:"Part C - making it happen", ANNEX:"Reference annexes"};
 
 const PARTS = [
-  {key:"A", part:"Part A — orientation, everyone reads this", chapters:[
+  {key:"A", part:"Part A - orientation, everyone reads this", chapters:[
     {n:1, title:"Why reuse steel", pp:6, core:ALL, skim:[]},
     {n:2, title:"Your route, by role", pp:7, core:ALL, skim:[]},
     {n:3, title:"How reuse works, end to end", pp:8, core:ALL, skim:[]},
   ]},
-  {key:"B", part:"Part B — the process, supply side", chapters:[
+  {key:"B", part:"Part B - the process, supply side", chapters:[
     {n:4, title:"Finding and assessing donor steel", pp:6, core:["DEC"], skim:["CLI","DES","CON"]},
     {n:5, title:"Deconstruction and recovery", pp:6, core:["DEC"], skim:["CON","SUP"]},
     {n:6, title:"Testing, certification and traceability", pp:6, core:["DES","SUP"], skim:["CON","DEC"]},
   ]},
-  {key:"B", part:"Part B — the process, design and delivery", chapters:[
+  {key:"B", part:"Part B - the process, design and delivery", chapters:[
     {n:7, title:"Designing with reused steel", pp:7, core:["DES"], skim:["CLI","CON","SUP"]},
     {n:8, title:"Sourcing and supply", pp:5, core:["CON","SUP"], skim:["DES","DEC"]},
   ]},
-  {key:"B", part:"Part B — cutting across every stage", chapters:[
+  {key:"B", part:"Part B - cutting across every stage", chapters:[
     {n:9, title:"Procurement, contracts and programme", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"]},
     {n:10, title:"Cost", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"]},
     {n:11, title:"Risk, insurance and assurance", pp:6, core:["CLI","DES","CON"], skim:["SUP"]},
     {n:12, title:"Carbon and reporting", pp:6, core:["CLI","DES"], skim:["CON","SUP"]},
   ]},
-  {key:"C", part:"Part C — making it happen", chapters:[
+  {key:"C", part:"Part C - making it happen", chapters:[
     {n:13, title:"Lessons from projects that did it", pp:5, core:ALL, skim:[]},
     {n:14, title:"The bigger picture and what's next", pp:4, core:ALL, skim:[]},
   ]},
   {key:"ANNEX", part:"Reference annexes", chapters:[
-    {n:"—", title:"Glossary", pp:4, core:[], skim:ALL},
+    {n:"·", title:"Glossary", pp:4, core:[], skim:ALL},
     {n:"A", title:"Market data", pp:3, core:[], skim:["CLI","SUP"]},
     {n:"B", title:"Directory", pp:4, core:["CON","SUP"], skim:["DES","DEC"]},
     {n:"C", title:"Case study bank", pp:5, core:[], skim:ALL},
