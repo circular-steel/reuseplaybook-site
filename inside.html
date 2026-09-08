@@ -105,8 +105,7 @@ function tagHTML(code, chap){
 
 function chapterHTML(chap){
   return `<div class="mchap" data-core="${chap.core.join(" ")}" data-skim="${chap.skim.join(" ")}">
-    <span class="mn">${chap.n}</span><h4>${chap.title}</h4>
-    <div class="mp">${chap.pp}pp</div>
+    <div class="mhead"><span class="mn">${chap.n}</span><h4>${chap.title}</h4></div>
     <div class="mtags">${ALL.map(c=>tagHTML(c,chap)).join("")}</div>
   </div>`;
 }
