@@ -20,9 +20,9 @@
 <div class="hero-band">
   <a href="https://circularsteel.com"><img class="hero-mark" src="assets/circular-steel-logo-white.png" alt="Circular Steel"></a>
   <div class="wrap hero">
-    <span class="status"><span class="dot"></span>A working preview, not the finished book</span>
+    <span class="status"><span class="dot"></span>A working preview, not the finished playbook</span>
     <h1>What's inside.</h1>
-    <p class="lede">Fourteen chapters, tagged by who they're for. Pick your role below and watch the book
+    <p class="lede">Fourteen chapters, tagged by who they're for. Pick your role below and watch the playbook
       narrow to just your part, the same filtering the finished site will use for real.</p>
   </div>
 </div>
@@ -36,6 +36,8 @@
   <h2 class="sechead">Filter by your role</h2>
 
   <div class="rolebar" id="rolebar"></div>
+  <p class="legendnote">The first five are the parties the steel passes between. Local authority sits
+    across that chain rather than in it: it consents what the other five do.</p>
   <p class="mapstatus" id="mapstatus"></p>
 
   <div id="mapgrid"></div>
@@ -52,7 +54,7 @@
 <footer class="site"><div class="wrap frow">
   <div class="fbrand">
     <img src="assets/circular-steel-logo-white.png" alt="Circular Steel">
-    <span class="flabel"><strong>Reuse Playbook</strong>an initiative from Circular Steel</span>
+    <span class="flabel"><strong>Reuse Playbook</strong>an initiative from Circular Steel, co-authored with Maconda</span>
   </div>
   <div class="flinks">
     <a href="https://circularsteel.com">circularsteel.com</a>
@@ -62,7 +64,7 @@
 </div></footer>
 
 <script>
-const ROLES = {CLI:"Client side", DES:"Design team", CON:"Main contractor", DEC:"Deconstruction", SUP:"Supply chain"};
+const ROLES = {CLI:"Client side", DES:"Design team", CON:"Main contractor", DEC:"Deconstruction", SUP:"Supply chain", LAU:"Local authority"};
 const ALL = Object.keys(ROLES);
 
 const SECTIONS = {A:"Part A - orientation", B:"Part B - the process", C:"Part C - making it happen", ANNEX:"Reference annexes"};
@@ -72,12 +74,12 @@ const PARTS = [
     {n:1, title:"Why reuse steel", pp:6, core:ALL, skim:[],
       desc:"The carbon and resource case, made once for every reader, and why steel is the most reuse-ready material in construction."},
     {n:2, title:"Your route, by role", pp:7, core:ALL, skim:[],
-      desc:"Five reader tags, one spread each: your route through the book, your first moves, and your red flags."},
+      desc:"Six reader tags, one spread each: your route through the playbook, your first moves, and your red flags."},
     {n:3, title:"How reuse works, end to end", pp:8, core:ALL, skim:[],
       desc:"The master diagram of the whole supply chain, so every later chapter locates your part in it."},
   ]},
   {key:"B", part:"Part B - the process, supply side", chapters:[
-    {n:4, title:"Finding and assessing donor steel", pp:6, core:["DEC"], skim:["CLI","DES","CON"],
+    {n:4, title:"Finding and assessing donor steel", pp:6, core:["DEC","LAU"], skim:["CLI","DES","CON"],
       desc:"Pre-demolition audits, desktop studies, and what actually makes steel worth recovering before it comes down."},
     {n:5, title:"Deconstruction and recovery", pp:6, core:["DEC"], skim:["CON","SUP"],
       desc:"Methods, sequencing and the economics of careful take-down, because damage decides what steel is worth."},
@@ -91,7 +93,7 @@ const PARTS = [
       desc:"Stockists, lead times, and the honest economics of matching real supply to real demand."},
   ]},
   {key:"B", part:"Part B - cutting across every stage", chapters:[
-    {n:9, title:"Procurement, contracts and programme", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"],
+    {n:9, title:"Procurement, contracts and programme", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP","LAU"],
       desc:"Why most projects lose the opportunity for reuse before anyone opens a drawing, and how to keep it open."},
     {n:10, title:"Cost", pp:6, core:["CLI","CON"], skim:["DES","DEC","SUP"],
       desc:"Where reuse costs more, where it saves, and how to set a contingency based on real risk."},
@@ -108,7 +110,7 @@ const PARTS = [
   ]},
   {key:"ANNEX", part:"Reference annexes", chapters:[
     {n:"·", title:"Glossary", pp:4, core:[], skim:ALL,
-      desc:"Terms across reuse and recycling defined once, so the rest of the book can stay readable."},
+      desc:"Terms across reuse and recycling defined once, so the rest of the playbook can stay readable."},
     {n:"A", title:"Market data", pp:3, core:[], skim:["CLI","SUP"],
       desc:"Volumes, flows and reuse rates for the UK market, sourced and dated."},
     {n:"B", title:"Directory", pp:4, core:["CON","SUP"], skim:["DES","DEC"],
@@ -117,10 +119,12 @@ const PARTS = [
       desc:"One page per project, with real data, added to with every edition."},
     {n:"D", title:"Cost benchmarks", pp:2, core:["CLI"], skim:["CON"],
       desc:"The numbers that date fastest, isolated here and updated on their own cycle."},
-    {n:"E", title:"UK regulatory and certification snapshot", pp:4, core:["DES"], skim:["CLI","CON","SUP"],
-      desc:"The current CE and UKCA position and testing specifics, since these details date quickly."},
+    {n:"E", title:"UK regulatory, planning and certification", pp:5, core:["DES","LAU"], skim:["CLI","CON","SUP"],
+      desc:"The current CE and UKCA position, testing specifics and planning requirements, since these details date quickly."},
     {n:"F", title:"Resource library", pp:2, core:[], skim:["DES","SUP"],
       desc:"Signposts to SCI, IStructE and EN documents, with the version numbers that matter."},
+    {n:"G", title:"Contributors", pp:1, core:[], skim:ALL,
+      desc:"Everyone who contributed to the playbook, credited here."},
   ]},
 ];
 
@@ -135,7 +139,7 @@ function chapterHTML(chap){
   return `<div class="mchap" data-core="${chap.core.join(" ")}" data-skim="${chap.skim.join(" ")}">
     <div class="mhead"><span class="mn">${chap.n}</span><h4>${chap.title}</h4></div>
     <p class="mdesc">${chap.desc || ""}</p>
-    <div class="mtags">${ALL.map(c=>tagHTML(c,chap)).join("")}</div>
+    <div class="mtags">${ALL.map(c=>(c==="LAU" ? '<span class="tagsep"></span>' : "")+tagHTML(c,chap)).join("")}</div>
   </div>`;
 }
 
@@ -184,7 +188,7 @@ function applySection(key){
 function buildRoleBar(){
   const host = document.getElementById("rolebar");
   host.innerHTML = '<span class="lbl">I am</span>' +
-    Object.entries(ROLES).map(([k,v]) => `<button class="rchip" data-r="${k}">${v}</button>`).join("") +
+    Object.entries(ROLES).map(([k,v]) => (k==="LAU" ? '<span class="csep"></span>' : "") + `<button class="rchip" data-r="${k}">${v}</button>`).join("") +
     '<button class="rchip clear" data-r="">Show everything</button>';
   host.querySelectorAll(".rchip").forEach(b => b.onclick = () => {
     host.querySelectorAll(".rchip").forEach(x => x.classList.toggle("on", x === b && b.dataset.r));

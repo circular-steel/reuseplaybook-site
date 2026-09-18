@@ -8,6 +8,7 @@
   --con-b:#FDEECD; --con-t:#7A5410;
   --dec-b:#E2F0E0; --dec-t:#3A5E36;
   --sup-b:#ECF2D8; --sup-t:#5A6B26;
+  --lau-b:#E8E0F0; --lau-t:#4A3A6B;
   --r:10px;
 }
 *{box-sizing:border-box}
@@ -25,13 +26,15 @@ header.site{border-bottom:1px solid var(--line);background:#fff}
 .brand span{color:var(--cyan)}
 
 /* tags */
-.tag{display:inline-block;font:600 11px/1 inherit;letter-spacing:.4px;padding:4px 9px;border-radius:999px;
+.tag{display:inline-block;font-weight:600;font-size:11px;line-height:1;letter-spacing:.4px;padding:4px 9px;border-radius:999px;
   vertical-align:2px;margin-right:4px}
 .tag[data-t=CLI]{background:var(--cli-b);color:var(--cli-t)}
 .tag[data-t=DES]{background:var(--des-b);color:var(--des-t)}
 .tag[data-t=CON]{background:var(--con-b);color:var(--con-t)}
 .tag[data-t=DEC]{background:var(--dec-b);color:var(--dec-t)}
 .tag[data-t=SUP]{background:var(--sup-b);color:var(--sup-t)}
+.tag[data-t=LAU]{background:var(--lau-b);color:var(--lau-t)}
+.tagsep{display:inline-block;width:1px;height:16px;background:var(--line);margin:0 5px 0 3px;vertical-align:middle}
 .tag.skim{opacity:.5}
 .tag.ghost{background:transparent!important;color:var(--mute)!important;box-shadow:inset 0 0 0 1px var(--line)}
 
@@ -45,8 +48,11 @@ header.site{border-bottom:1px solid var(--line);background:#fff}
 .rchip.on{color:#fff;border-color:transparent}
 .rchip.on[data-r=CLI]{background:var(--cli-t)} .rchip.on[data-r=DES]{background:var(--des-t)}
 .rchip.on[data-r=CON]{background:var(--con-t)} .rchip.on[data-r=DEC]{background:var(--dec-t)}
-.rchip.on[data-r=SUP]{background:var(--sup-t)}
+.rchip.on[data-r=SUP]{background:var(--sup-t)} .rchip.on[data-r=LAU]{background:var(--lau-t)}
 .rchip.clear{color:var(--mute)}
+.csep{width:1px;align-self:stretch;background:var(--line);margin:2px 2px}
+.legendnote{font-size:12.5px;line-height:1.5;color:var(--mute);margin:8px 0 0}
+.acrossnote{font-size:12.5px;color:var(--mute);margin:4px 0 0;padding-top:12px;border-top:1px solid var(--line)}
 .schip.on{background:var(--navy)}
 .mapstatus{font-size:14.5px;color:var(--grey);margin:0 0 28px;min-height:1.4em}
 .mapstatus strong{color:var(--ink)}
@@ -54,7 +60,7 @@ header.site{border-bottom:1px solid var(--line);background:#fff}
 .mapsection:first-of-type{margin-top:0}
 .mappart{font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);font-weight:700;
   margin:0 0 12px}
-.mapgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 .mchap{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;transition:opacity .18s}
 .mchap.dim{opacity:.22}
 .mhead{display:flex;align-items:flex-start;gap:9px;margin:0 0 12px}
@@ -195,3 +201,5 @@ figcaption{font-size:13px;color:var(--mute);margin-top:12px}
   margin:36px 0 0;max-width:680px;text-align:left}
 .excerptend h3{margin:0 0 8px;font-size:18px}
 .excerptend p{margin:0 0 18px;color:var(--grey)}
+.mtags .tagsep{align-self:center;margin:0 2px}
+.legendnote + .mapstatus{margin-top:14px}
