@@ -201,5 +201,8 @@ figcaption{font-size:13px;color:var(--mute);margin-top:12px}
   margin:36px 0 0;max-width:680px;text-align:left}
 .excerptend h3{margin:0 0 8px;font-size:18px}
 .excerptend p{margin:0 0 18px;color:var(--grey)}
-.mtags .tagsep{align-self:center;margin:0 2px}
+.mchap .mtags{gap:4px}
+.mchap .mtags .tag{padding:3px 7px;font-size:10.5px}
+.mchap .mtags .tag[data-t=LAU]{position:relative;margin-left:8px}
+.mchap .mtags .tag[data-t=LAU]::before{content:"";position:absolute;left:-7px;top:-2px;bottom:-2px;width:1px;background:var(--line)}
 .legendnote + .mapstatus{margin-top:14px}
